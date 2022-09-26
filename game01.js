@@ -1,31 +1,48 @@
 'use strict';
 
-let number = Math.ceil(Math.random() * 5);
+let number = Math.ceil(Math.random() * 100);
+let guess = prompt('Загадано число от 1 до 100, попробуй отгадать его');
 
-const foo = (number) => {
-  let guess = prompt('Загадано число от 1 до 100, попробуй отгадать его');
+const checkNumber = guess => {
+  if (Number.isNaN(+guess)) {
+    guess = prompt('Введи число!');
+    checkNumber(guess);
+  } else {
+    return guess;
+  }
+};
+
+const foo = (number, guess) => {
+  checkNumber(guess);
 
   if (guess === null) {
     console.log('Игра закончена');
-    return null;
+    return;
+  }
+
+  if (guess == number) {
+    alert('Угадал!');
+    console.log('number: ', number);
+    console.log('guess: ', guess);
+    return;
   }
 
   if (guess > number) {
     alert('Меньше!');
-    return false;
-  } else if (guess < number) {
+    foo(number, prompt('Введи число!'));
+  }
+
+  if (guess < number) {
     alert('Больше!');
-    return false;
-  } else {
-    alert('Угадал!');
-    console.log('Игра закончена');
-    return true;
+    foo(number, prompt('Введи число!'));
   }
 };
 
-let flag = foo(number);
+foo(number, guess);
 
-while (!flag || flag !== null) {
-  flag = foo(number);
-}
+
+
+
+
+
 
