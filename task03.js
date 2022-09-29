@@ -9,21 +9,16 @@ const generateArrRandNums = (count, m , n, str) => {
 
   if (str) {
     const newArr = arr.map(item => {
-      if ((str === 'odd') && (item % 2) || (str === 'even') && (!(item % 2))) {
+      if (str === 'odd' || str === 'even') {
+        if ((str === 'odd' && item % 2) || (str === 'even' && !(item % 2))) return item;
+        if (item !== Math.min(m, n)) {
+          return item - 1;
+        } else {
+          return item + 1;
+        }
+      } else {
         return item;
-      }
-  
-      if ((str === 'odd') && (!(item % 2)) || (str === 'even') && (item % 2)) {
-        return item - 1;
-      }
-  
-      if ((str === 'odd') && (!(item % 2) && (item === Math.min(m, n))) || (str === 'even') && (item % 2) && (item === Math.min(m, n))) {
-        return item + 1;
-      }
-
-      if (!(str === 'odd') || (!(str === 'even'))) {
-        return item;
-      }
+      }  
     });
 
     return newArr;
@@ -46,35 +41,8 @@ const generateRandNum = (m, n) => {
 
 console.log(generateArrRandNums(20, 1, 10));
 console.log(generateArrRandNums(20, 0, 10, 'aasof'));
-console.log(generateArrRandNums(20, 0, 10, 'odd'));
-console.log(generateArrRandNums(20, 0, 10, 'even'));
+console.log(generateArrRandNums(10, 0, 10, 'odd'));
+console.log(generateArrRandNums(20, 9, 20, 'even'));
 
 
-// if (str) {
-//   if (str === 'odd') {
 
-//     const oddArr = arr.map(item => {
-//       if (item % 2) return item;
-//       if (item % 2 === 0 && item === Math.min(m, n)) return item + 1;
-//       return item - 1;
-//     });
-  
-//     return oddArr;
-  
-//   } else if (str === 'even') {
-  
-//     const evenArr = arr.map(item => {
-//       if (item % 2 === 0) return item;
-//       if (item % 2 && item === Math.min(m, n)) return item + 1;
-//       return item - 1;
-//     });
-  
-//     return evenArr;
-
-//   } else {
-//     return arr;
-//   }
-
-// } else {
-//   return arr;
-// }

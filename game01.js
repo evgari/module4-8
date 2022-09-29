@@ -3,8 +3,8 @@
 let number = Math.ceil(Math.random() * 100);
 let guess = prompt('Загадано число от 1 до 100, попробуй отгадать его');
 
-const checkNumber = guess => {
-  if (Number.isNaN(+guess)) {
+const getUserNumber = guess => {
+  if (Number.isNaN(parseInt(guess))) {
     guess = prompt('Введи число!');
     checkNumber(guess);
   } else {
@@ -13,7 +13,7 @@ const checkNumber = guess => {
 };
 
 const foo = (number, guess) => {
-  checkNumber(guess);
+  getUserNumber(guess);
 
   if (guess === null) {
     console.log('Игра закончена');
@@ -29,11 +29,13 @@ const foo = (number, guess) => {
 
   if (guess > number) {
     alert('Меньше!');
+    console.log('guess: ', guess);
     foo(number, prompt('Введи число!'));
   }
 
   if (guess < number) {
     alert('Больше!');
+    console.log('guess: ', guess);
     foo(number, prompt('Введи число!'));
   }
 };
